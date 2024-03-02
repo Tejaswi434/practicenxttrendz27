@@ -1,0 +1,30 @@
+/* Write your CSS code here */
+button {
+  background-color: blue;
+  color: white;
+  padding: 6px;
+  margin-left: 10px;
+  border: 0px;
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
+  margin-top: 14px;
+  padding: 7px;
+}
+
+img {
+  height: 90%;
+  width: 60%;
+}
+.main_container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.small_one {
+  width: 50%;
+}
+.small_two {
+  width: 70%;
+}
