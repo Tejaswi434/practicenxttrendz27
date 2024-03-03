@@ -1,14 +1,17 @@
-// Write your JS code here
 import {Component} from 'react'
 
 import './index.css'
 
 class LoginForm extends Component {
-  state = {username: '', password: '', trigger: false}
+  state = {username: '', password: '', trigger: false, errMsg: ''}
 
   smallChange = () => {
     const {history} = this.props
     history.replace('/')
+  }
+
+  changing = errMsg => {
+    this.setState({trigger: true, errMsg})
   }
 
   findingChanges = async event => {
@@ -26,7 +29,7 @@ class LoginForm extends Component {
     if (fetching.ok === true) {
       this.smallChange()
     } else {
-      this.setState({trigger: true})
+      this.changing(response.error_msg)
     }
   }
 
@@ -39,16 +42,14 @@ class LoginForm extends Component {
   }
 
   render() {
-    const {trigger} = this.state
+    const {trigger, errMsg} = this.state
     return (
       <div className="main_container">
-        <div className="first">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-login-img.png"
-            className="website logo"
-            alt="website logo"
-          />
-        </div>
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-login-img.png"
+          className="website logo"
+          alt="website logo"
+        />
 
         <div className="two">
           <img
@@ -56,22 +57,22 @@ class LoginForm extends Component {
             alt="website login"
           />
           <form className="rowing" onSubmit={this.findingChanges}>
-            <label htmlFor="first">USERNAME</label>
+            <label htmlFor="userName">USERNAME</label>
             <input
-              id="first"
+              id="userName"
               type="text"
               onChange={this.first}
               placeholder="Username"
             />
             <label htmlFor="second">PASSWORD</label>
             <input
-              htmlFor="second"
+              id="second"
               type="password"
               onChange={this.second}
               placeholder="Password"
             />
             <button type="submit">Login</button>
-            {trigger && <p>username and password didn't match</p>}
+            {trigger && <p>{errMsg}</p>}
           </form>
         </div>
       </div>
@@ -79,3 +80,4 @@ class LoginForm extends Component {
   }
 }
 export default LoginForm
+
